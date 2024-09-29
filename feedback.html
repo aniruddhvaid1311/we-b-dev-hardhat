@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Page</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+            background-color: #000000; /* Matching the dark background of the Hardhat site */
+            color: #FFD84A; /* Yellow color used in the Hardhat site */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #1D1D1D; /* Dark grey background for the form container */
+            padding: 40px;
+            width: 60%;
+            max-width: 600px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: 2px solid #FFD84A; /* Yellow border matching the theme */
+            position: relative;
+            overflow: hidden;
+        }
+        .feedback-header {
+            font-size: 36px;
+            color: #FFD84A; /* Yellow color for the header */
+            margin-bottom: 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            position: relative;
+            text-align: center;
+        }
+        .input {
+            padding: 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #FFD84A; /* Yellow border */
+            background-color: #333333; /* Dark grey background for inputs */
+            color: #FFD84A; /* Yellow text */
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .input:focus {
+            border-color: #FFD84A; /* Yellow border on focus */
+            box-shadow: 0 0 8px rgba(255, 216, 74, 0.3);
+            outline: none;
+        }
+        .button {
+            font-size: 18px;
+            margin-top: 20px;
+            background-color: #FFD84A; /* Yellow background for the button */
+            color: #000000; /* Black text for the button */
+            border: none;
+            padding: 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .button:hover {
+            background-color: #FBD240; /* Slightly lighter yellow on hover */
+        }
+        .section label {
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+            color: #FFD84A; /* Yellow color for labels */
+        }
+        .section textarea {
+            resize: none;
+            height: 150px;
+        }
+        .icon {
+            font-size: 20px;
+            color: #FFD84A;
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .section input, .section textarea {
+            padding-left: 40px;
+        }
+        .icon.email {
+            top: 17%;
+        }
+        .icon.subject {
+            top: 35%;
+        }
+        .icon.message {
+            top: 54%;
+        }
+        /* Adding a glowing effect for the container */
+        .container:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #FFD84A, #FBD240, #FFD84A);
+            animation: slide 4s linear infinite;
+        }
+        @keyframes slide {
+            from { left: -100%; }
+            to { left: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Feedback Form -->
+    <div class="container">
+        <div class="center">
+            <span class="feedback-header">Feedback</span>
+        </div>
+        <form id="feedbackForm" action="/action_page.php" target="_blank" onsubmit="return validateForm()">
+            <div class="section">
+                <i class="fa fa-user icon"></i>
+                <label for="name">Name</label>
+                <input id="name" class="input border" type="text" name="Name" required>
+            </div>
+            <div class="section">
+                <i class="fa fa-envelope icon email"></i>
+                <label for="email">Email</label>
+                <input id="email" class="input border" type="email" name="Email" required>
+            </div>
+            <div class="section">
+                <i class="fa fa-pencil icon subject"></i>
+                <label for="subject">Subject</label>
+                <input id="subject" class="input border" type="text" name="Subject" required>
+            </div>
+            <div class="section">
+                <i class="fa fa-comments icon message"></i>
+                <label for="message">Message</label>
+                <textarea id="message" class="input border" name="Message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="button block">Send</button>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            let name = document.forms["feedbackForm"]["Name"].value;
+            let email = document.forms["feedbackForm"]["Email"].value;
+            let subject = document.forms["feedbackForm"]["Subject"].value;
+            let message = document.forms["feedbackForm"]["Message"].value;
+
+            if (name == "" || email == "" || subject == "" || message == "") {
+                alert("All fields must be filled out");
+                return false;
+            }
+            return true;
+        }
+    </script>a
+
+</body>
+</html>
